@@ -15,16 +15,16 @@
 
     // 問1 関数の定義と呼び出し
     // 「こんにちは！」と出力する関数 hello() を定義し、2回呼び出してください。
-      
-   function hello(){
-    console.log(`こんにちは！`)
-    return;
-   }
- hello()
- hello()
+
+    function hello() {
+      console.log(`こんにちは！`)
+      return;
+    }
+    hello()
+    hello()
 
 
-  
+
     // 【出力例】
     // こんにちは！
     // こんにちは！
@@ -35,12 +35,12 @@
     // 【出力例】
     // りんごは120円です
     // バナナは80円です
-function showPrice(name,price){
-  console.log(`${name}は${price}円です`);
-  return;
-}
-showPrice(`りんご`,`120`);
-showPrice(`バナナ`,`80`);
+    function showPrice(name, price) {
+      console.log(`${name}は${price}円です`);
+      return;
+    }
+    showPrice(`りんご`, `120`);
+    showPrice(`バナナ`, `80`);
 
 
     // 問3 戻り値
@@ -49,6 +49,19 @@ showPrice(`バナナ`,`80`);
     // 【出力例】
     // 縦4、横5の長方形の面積は20です
     // 縦3、横7の長方形の面積は21です
+    function getArea(height, width) {
+      let area = height * width;
+      return area;
+    }
+    let height = 4
+    let width = 5
+    let area = getArea(4, 5);
+    console.log(`縦${height}、横${width}の面積は${area}です。`);
+
+    height = 3
+    width = 7
+    area = getArea(3, 7);
+    console.log(`縦${height}、横${width}の面積は${area}です。`);
 
 
     // 問4 デフォルト引数
@@ -57,6 +70,18 @@ showPrice(`バナナ`,`80`);
     // 【出力例】
     // こんにちは、田中さん
     // こんにちは、ゲストさん
+    let name = prompt('名前を入力してください');
+    greet(name);
+
+
+
+    function greet(name = 'ゲスト') {
+      console.log(`「こんにちは、${name}さん」`);
+      return;
+    }
+    greet(`田中`);
+    greet();
+
 
 
     // 問5 まとめ
@@ -66,7 +91,13 @@ showPrice(`バナナ`,`80`);
     // 【出力例】
     // 合計は360円です
     // 合計は80円です
-
+    function getTotal(price, quantity = '1') {
+      let getTotal = price * quantity
+      console.log(`合計は${getTotal}円です`)
+      return;
+    }
+    getTotal(120, 3);
+    getTotal(80,);
   </script>
 </body>
 
