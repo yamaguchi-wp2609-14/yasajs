@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI計算プログラム</title>
+</head>
+<body>
+    <h1>BMI計算プログラム</h1>
+    <script>
+        //1.データを用意する
+        //体重
+        let weight = prompt('体重を入力してください。');
+        //身長（ユーザーにcmで入力してほしい）
+        let height = prompt('身長を入力してください。');
+        //let heightn = height / 100
+        height = height / 100
+
+        //2.データを使ってBMIを計算する
+        let bmi = weight / (height * height);
+
+        //3.alertで表示
+        let message = 'あなたのBMI「' + bmi + '」です。';
+        alert(message);
+        console.log(message);
+        
+        /* ブロックコメント
+         複数行のコメント
+        */
+
+
+    </script>
+</body>
+</html>
