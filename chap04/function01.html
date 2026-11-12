@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>関数</title>
+</head>
+<body>
+    <h1>関数</h1>
+    <script>
+        /*
+        関数の定義
+        function 関数名（仮引数1,仮引数2,....）｛
+        処理;
+        return 戻り値;
+         }
+        */ 
+       
+        //挨拶関数
+        function sayHello (name = 'ななし'){
+            console.log(`こんにちは、${name}さん。`);
+            return;
+        }
+
+        sayHello(`やまぐち`);
+        sayHello(`にし`);
+        sayHello();
+
+        //足し算する関数
+        function calcSum(a,b){
+            let result = a + b;
+            //console.log(result);
+            return result;
+    
+        }
+        let result = calcSum(3,5);
+        console.log(result);
+
+    </script>
+</body>
+</html>
