@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ウォーターボトル・オブジェクト</title>
+</head>
+<body>
+    <h1>ウォーターボトル・オブジェクト</h1>
+    <script>
+        //ウォーターボトルをプログラムで表現してみよう
+        // let name = '取って付きウォーターボトル';
+        // let color = '白';
+        // let price = 500;
+        // let weight = 50;
+        // let capacity = 350;
+        // let material = 'プラスチック';
+
+        // let name1 = '取って付きウォーターボトル';
+        // let color1 = '青';
+        // let price1 = 500;
+        // let weight1 = 50;
+        // let capacity1 = 350;
+        // let material1 = 'プラスチック';
+
+const waterBottleWhite = {
+            name:'取って付きウォーターボトル',
+            color:'白',
+            capacity : 350,
+            material: 'プラスチック',
+            price: 500,
+            weight: 50,
+            contents:0,//現在の水の量
+            showContents: function(){
+                //無名関数
+                //現在の水の量をコンソールに表示する
+                console.log(`現在の水の量は${this.contents}mlです。`);   
+            },
+            addWater: function (amount) {
+                //ウォーターボトルに引数の量だけ水を追加するメソッド
+                this.contents += amount; 
+            }
+        };
+        console.log(waterBottleWhite);
+        console.log(waterBottleWhite.name);
+        console.log(waterBottleWhite.price);
+        console.log(`${waterBottleWhite.name}は${waterBottleWhite.price}円です。`);
+        //現在の水の量を表示
+        waterBottleWhite.showContents();
+        //水を100追加
+        waterBottleWhite.addWater(100);
+        //現在の水の量を表示
+        waterBottleWhite.showContents();
+        
+    </script>
+</body>
+</html>

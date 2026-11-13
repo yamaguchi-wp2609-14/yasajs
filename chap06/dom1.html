@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+
+    <h1 class="page-title">DOM</h1>
+<style>
+    .page-title{
+        color: red;
+    }
+
+    .is-active{
+        font-weight: bold;
+        color: orange;
+    }
+</style>
+
+    <p class="description">DOMとはHTMLをJavaScriptで操作するための仕組みです。</p>
+    <h2>webページを構成する三大要素</h2>
+    <ul class="list">
+    </ul>
+
+    <a class="link" href="https://google.co.jp" target="blank">google</a>
+
+    <script>
+        //ｈ１の文字を変更する（書き換える）(DOM→〇〇）
+        //１．操作したい要素を探す
+        const pageTitle = document.querySelector('.page-title');
+        console.log(pageTitle);
+
+        //２．操作したいプロパティ（）を見つける
+        console.log(pageTitle.textContent);
+        //３．プロパティの値を書き換える
+        pageTitle.textContent = 'Document Object Model';
+
+
+        //p.descriptionのスタイルを変更する
+        const description = document.querySelector('.description');
+        console.log(description);
+        description.style.color='blue';
+        description.style.fontSize='20px';
+        description.style.fontWeight='bold';
+
+        // //要素の追加（Ulの中の子要素liを増やす）
+        // //1. ulのlistを探す
+        const list = document.querySelector('ul.list');
+        console.log(list);
+        // //2. li要素を生成する
+        const li=document.createElement('li');
+        console.log(li);
+        // //3.li要素に「HTML」という文字列を書き込む
+        li.textContent = 'HTML';
+        // //4.ul.listの子要素にliを追加
+        list.append(li); //要素の末尾に追加
+
+        const li1=document.createElement('li');
+        li1.textContent = 'css';
+        list.append(li1);
+
+        const li2=document.createElement('li');
+        li2.textContent = 'JavaScript';
+        list.append(li2);
+        
+
+        // function addLiElement(text){
+        //     const li = document.createElement('li');
+        //     li.textContent = 'text';
+        //     list.append(li);
+        // }
+        // addLiElement('HTML');
+        // addLiElement('CSS');
+        // addLiElement('JavaScript');
+
+        // const liList= document.querySelector('li');
+        // li.textContent = 'HTML';
+        // console.log(li);
+        
+        //aタグのリンク先とテキストをリカレントスクールのページに変更する。
+       const link = document.querySelector('.link'); 
+       link.textContent='リカレントスクール';
+       
+       //href属性を書き換える
+       console.log(link.href);
+       link.href='https://sozosha-rs.jp/';
+
+       //クラス属性の取り扱い
+       console.log(link.classList);
+
+       //クラス属性の追加
+       link.classList.add('is-active');
+
+       //クラス属性の削除
+       link.classList.remove('is-active')
+
+       //要素の削除
+       link.remove();
+    </script>
+</body>
+</html>
