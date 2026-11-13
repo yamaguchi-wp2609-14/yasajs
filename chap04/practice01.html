@@ -35,8 +35,8 @@
     // 【出力例】
     // りんごは120円です
     // バナナは80円です
-    function showPrice(name, price) {
-      console.log(`${name}は${price}円です`);
+    function showPrice(itemName, itemPrice) {
+      console.log(`${itemName}は${itemPrice}円です`);
       return;
     }
     showPrice(`りんご`, `120`);
@@ -50,18 +50,25 @@
     // 縦4、横5の長方形の面積は20です
     // 縦3、横7の長方形の面積は21です
     function getArea(height, width) {
-      let area = height * width;
-      return area;
+      return height * width;
+      /* let area = height * width;
+      return area; */
     }
-    let height = 4
+
+    console.log(`縦4,横5の長方形の面積は${getArea(4,5)}です。`);
+
+    let area =getArea(3,7);
+    console.log(`縦3,横7の長方形の面積は${area}です。`);
+
+    /* let height = 4
     let width = 5
-    let area = getArea(4, 5);
+    let area = getArea(height, width);
     console.log(`縦${height}、横${width}の面積は${area}です。`);
 
     height = 3
     width = 7
-    area = getArea(3, 7);
-    console.log(`縦${height}、横${width}の面積は${area}です。`);
+    area = getArea(height, width);
+    console.log(`縦${height}、横${width}の面積は${area}です。`); */
 
 
     // 問4 デフォルト引数
@@ -70,8 +77,8 @@
     // 【出力例】
     // こんにちは、田中さん
     // こんにちは、ゲストさん
-    let name = prompt('名前を入力してください');
-    greet(name);
+    // let name = prompt('名前を入力してください');
+    // greet(name);
 
 
 
@@ -91,13 +98,16 @@
     // 【出力例】
     // 合計は360円です
     // 合計は80円です
-    function getTotal(price, quantity = '1') {
-      let getTotal = price * quantity
+    function getTotal(price, quantity = 1) {
+      return price * quantity;
+      /* let getTotal = price * quantity
       console.log(`合計は${getTotal}円です`)
-      return;
+      return; */
     }
-    getTotal(120, 3);
-    getTotal(80,);
+    console.log(`合計は${getTotal(120, 3)}円です`);
+    console.log(`合計は${getTotal(80)}円です`);
+    // getTotal(120, 3);
+    // getTotal(80,);
   </script>
 </body>
 
