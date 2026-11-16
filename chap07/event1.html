@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="DOMとはHTMLをJavaScriptで操作するための仕組みです。">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イベント１</title>
+    <style>
+        .is-hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>イベント1</h1>
+    <p>
+        <a href="https:/www.google.com" target="_blank" id="link">Google</a>
+    </p>
+    <button type="button" id="button">お問い合わせ</button>
+    <p id="message"></p>
+    <form action="#" id="form" class="is-hidden">
+        <p>
+            <textarea name="textarea" id="textarea" cols="50" rows="10" maxlength="500"></textarea>
+        </p>
+        <p>
+            <input type="submit" id="submit" value="送信">
+        
+        </p>
+    </form>
+    <script>
+        //button要素の取得
+        const button = document.querySelector('#button');
+        //form要素の取得
+        const form = document.querySelector('#form');
+        //残り入力文字数を表示するp要素
+        const message =document.querySelector('#message');
+        //
+        const textarea = document.querySelector('#textarea')
+        console.log(button,form,message,textarea);
+        
+        //buttonがクリックされたら
+        button.addEventListener('click',function(){ form.classList.remove('is-hidden');});
+        //　メソッド（関数）の引数として設定される関数　->コールバック関数
+        //formからis-hiddenクラスを取り除く
+        // form.classLIst.remove('is-hidden')
+
+       //文字数のカウント機能
+        //１．必要なデータを集める
+        //i.最大入力文字数
+        const maxTextNum = textarea.maxLength;
+        console.log(maxTextNum);
+        //ii.入力された文字数
+        let currentTexNum = 0;
+        //textareaに文字が入力されたら(function(eventかeで))
+        textarea.addEventListener('keyup',function(event){
+            // console.log(event.key);
+            //入力された文字数をcurrentTextNumに代入
+        // console.log('こんにちは'.length); 
+        //フォームに入力された値を取得する。
+        // console.log('textarea'.value); 
+        currentTexNum = textarea.value.length
+            console.log(`入力された文字数：${currentTexNum}`);
+            const msg = `あと「${maxTextNum - currentTexNum}」文字入力できます。`;
+            message.textContent = msg;
+        });
+        //HTMLのデフォルト機能を止める
+        const link = document.querySelector('#link')
+        console.log(link);
+        link.addEventListener('click',function(event){
+            event.preventDefault();
+            confirm('外部サイトへ移動してよろしいでしょうか？');
+        });
+
+    </script>
+    
+</body>
+</html>
