@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習1（オブジェクト・DOM操作）</title>
+  <style>
+    .is-hidden {
+      display: none;
+    }
+
+    .is-active {
+      color: #fff;
+      background-color: #e53935;
+    }
+
+    .card {
+      width: 200px;
+      padding: 16px;
+      border: 1px solid #ccc;
+    }
+
+    .is-sold-out {
+      opacity: 0.4;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>練習1（オブジェクト・DOM操作）</h1>
+
+  <!-- 問3 -->
+  <h2 id="shop-name">店名</h2>
+  <p class="message">メッセージ</p>
+
+  <!-- 問4 -->
+  <p id="notice" class="is-hidden">本日はポイント2倍です</p>
+  <p id="sale">セール中</p>
+
+  <!-- 問5 -->
+  <ul id="item-list">
+    <li>りんご</li>
+    <li>バナナ</li>
+  </ul>
+
+  <!-- 問6 -->
+  <div id="new-arrival"></div>
+
+  <!-- 問7 -->
+  <p id="old-info">このお知らせは終了しました</p>
+
+  <!-- 問8 -->
+  <div id="card" class="card">
+    <h3 class="card-name">商品名</h3>
+    <p class="card-price">0円</p>
+  </div>
+
+  <script>
+    // 問1・問2は、出力例と同じ文字列をコンソールに出力してください。
+
+
+    // 問3〜問8は、HTMLの要素を操作して、ブラウザの表示が【完成イメージ】のようになるようにしてください。
+    // 変数やプロパティの値を含む文字列は、テンプレート文字列（`${}`）で作成してください。
+
+    // 問1 オブジェクトリテラル
+    // 商品名「りんご」、値段「120」をプロパティに持つオブジェクトを作り、定数 item に代入してください。
+    // プロパティ名は name、price とします。ドット記法で値を取り出して出力してください。
+    // 【出力例】
+    // りんごは120円です
+   const item = {
+    name:  'りんご',
+    price: '120',
+   }
+    console.log(`商品名:${item.name}は${item.price}円です。`);
+
+
+    // 問2 プロパティの書き換えと追加
+    // 問1の item の price を 150 に書き換え、在庫数を表すプロパティ stock を追加して 5 を代入してください。
+    // 【出力例】
+    // りんごは150円です（在庫5個）
+item.price = 150;
+item.stock = 5;
+console.log(`${item.name}は${item.price}円です。(在庫${item.stock}個)`);
+    // 問3 要素の取得と文字の書き換え
+    // querySelector() で要素を取得し、textContent で文字を書き換えてください。
+    // 【完成イメージ】
+    // 見出し（#shop-name）が「ふくおかマルシェ」になる
+    // メッセージ（.message）が「いらっしゃいませ」になる
+        const shopName = document.querySelector('#shop-name'); 
+       shopName.textContent = '「ふくおかマルシェ」';
+
+       const messeageText = document.querySelector('.message'); 
+       messeageText.textContent = 'いらっしゃいませ';
+
+      
+    // 問4 classList
+    // classList を使って、クラスを付け外ししてください。
+    // 【完成イメージ】
+    // #notice から is-hidden クラスを外し、「本日はポイント2倍です」が表示される
+    // #sale に is-active クラスを付け、「セール中」が赤い背景で表示される
+    const isHidden = document.querySelector('#notice'); 
+    isHidden.classList.remove('is-hidden');
+
+    const sale = document.querySelector('#sale'); 
+    sale.classList.add('is-active');
+
+    // 問5 createElement() による要素の追加
+    // createElement() で li 要素を作り、append() で #item-list の最後に追加してください。
+    // 【完成イメージ】
+    // リストが「りんご」「バナナ」「みかん」の3つになる
+   const list = document.querySelector('#item-list');
+    const li=document.createElement('li');
+   li.textContent = 'みかん';
+   list.append(li);
+   console.log(li);
+  
+    // 問6 innerHTML による要素の追加
+    // 次の定数を使い、innerHTML に HTML の文字列を代入して、#new-arrival の中に要素を追加してください。
+
+    const newItemName = "いちご";
+
+    // 【完成イメージ】
+    // #new-arrival の中に、次の HTML が入る
+    // <h3>新着商品</h3>
+    // <p>いちごが入荷しました</p>
+   const newArrival = document.querySelector('#new-arrival');
+   newArrival.innerHTML = `
+   <h3 class="section-title">新着商品</h3>
+   <p>${newItemName}いちごが入荷しました</p>
+   `;
+
+    // 問7 要素の削除
+    // remove() を使って、#old-info の要素を削除してください。
+    // 【完成イメージ】
+    // 「このお知らせは終了しました」が表示されなくなる
+   const oldInfo = document.querySelector('#old-info');
+   oldInfo.remove();
+
+    // 問8 まとめ
+    // 次のオブジェクトのデータを、#card の中の要素に表示してください。
+    // stock が 0 のときは、#card に is-sold-out クラスを付けてください。
+    const melon = {
+      name: "メロン",
+      price: 800,
+      stock: 0,
+    };
+    // 【完成イメージ】
+    // カードの商品名が「メロン」、値段が「800円」になる
+    // 売り切れのため、カードが薄く表示される
+    const card = document.querySelector('#card');
+    const cardName = document.querySelector('.card-name');
+
+    const cardPrice = document.querySelector('.card-price');
+
+    cardName.textContent = melon.name;
+    cardPrice.textContent = melon.price
+    card.classList.add('is-sold-out');
+
+    //発展問題
+
+    const carrot = {
+      name: "にんじん",
+      price: 100,
+      stock: 10,
+    }
+    const poteto = {
+      name: "じゃがも",
+      price: 80,
+      stock: 20,
+    }
+    const cucumber = {
+      name: "きゅうり",
+      price: 50,
+      stock: 15,
+    }
+    const cabbage = {
+      name: "キャベツ",
+      price: 200,
+      stock: 15,
+    }
+
+
+  </script>
+</body>
+
+</html>
