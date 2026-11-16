@@ -103,12 +103,21 @@
     // #hello-button をクリックしたら、コンソールに文字列を出力してください。
     // 【完成イメージ】
     // クリックするたびに、コンソールに「ボタンが押されました」と出力される
-
+    const helloButton = document.querySelector('#hello-button')
+    helloButton.addEventListener('click',function(){ helloButton.classList.remove('hello-button');
+    console.log('「ボタンが押されました」')
+    });
+   
 
     // 問2 クリックで文字を書き換える
     // #open-button をクリックしたら、#status の文字を書き換えてください。
     // 【完成イメージ】
     // 「準備中」が「営業中」になる
+    // const openButton = document.querySelector('#open-button')
+    const openButton = document.querySelector('#open-button');
+    const status = document.querySelector('#status');
+    openButton.addEventListener('click',function(){ status.textContent = '営業中'
+    });
 
 
     // 問3 クリックで表示を切り替える
