@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習1（イベント）</title>
+  <style>
+    section {
+      margin-bottom: 32px;
+    }
+
+    .is-hidden {
+      display: none;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100%;
+      padding: 16px;
+      background-color: #eee;
+      transform: translateX(100%);
+      transition: transform 0.3s;
+    }
+
+    .drawer.is-open {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>練習1（イベント）</h1>
+
+  <section>
+    <h2>問1</h2>
+    <button id="hello-button">押してください</button>
+  </section>
+
+  <section>
+    <h2>問2</h2>
+    <p id="status">準備中</p>
+    <button id="open-button">開店する</button>
+  </section>
+
+  <section>
+    <h2>問3</h2>
+    <button id="detail-button">詳しく見る</button>
+    <p id="detail" class="is-hidden">営業時間は10時から18時までです。</p>
+  </section>
+
+  <section>
+    <h2>問4</h2>
+    <input type="text" id="name-input" placeholder="名前">
+    <button id="greet-button">あいさつする</button>
+    <p id="greet-message"></p>
+  </section>
+
+  <section>
+    <h2>問5</h2>
+    <p>個数：<span id="count">0</span></p>
+    <button id="plus-button">＋</button>
+    <button id="minus-button">－</button>
+  </section>
+
+  <section>
+    <h2>問6</h2>
+    <textarea id="comment" rows="3"></textarea>
+    <p id="comment-length">0文字</p>
+  </section>
+
+  <section>
+    <h2>問7</h2>
+    <form id="login-form" novalidate>
+      <input type="email" id="email" placeholder="メールアドレス">
+      <button>ログイン</button>
+      <p id="login-message"></p>
+    </form>
+  </section>
+
+  <section>
+    <h2>問8</h2>
+    <button id="menu-open">メニューを開く</button>
+    <nav id="drawer" class="drawer">
+      <button id="menu-close">閉じる</button>
+      <ul>
+        <li>ホーム</li>
+        <li>商品一覧</li>
+        <li>お問い合わせ</li>
+      </ul>
+    </nav>
+  </section>
+
+  <script>
+    // addEventListener() を使って、ボタンを押したときなどの処理を書いてください。
+    // ブラウザで操作して、【完成イメージ】のように動けば正解です。
+    // 変数やプロパティの値を含む文字列は、テンプレート文字列（`${}`）で作成してください。
+
+    // 問1 クリックイベント
+    // #hello-button をクリックしたら、コンソールに文字列を出力してください。
+    // 【完成イメージ】
+    // クリックするたびに、コンソールに「ボタンが押されました」と出力される
+
+
+    // 問2 クリックで文字を書き換える
+    // #open-button をクリックしたら、#status の文字を書き換えてください。
+    // 【完成イメージ】
+    // 「準備中」が「営業中」になる
+
+
+    // 問3 クリックで表示を切り替える
+    // #detail-button をクリックしたら、classList.toggle() で #detail の is-hidden クラスを付け外ししてください。
+    // 【完成イメージ】
+    // クリックするたびに、営業時間の文章が表示・非表示を繰り返す
+
+
+    // 問4 入力された値を使う
+    // #greet-button をクリックしたら、#name-input に入力された値（value）を使って、#greet-message にあいさつを表示してください。
+    // 【完成イメージ】
+    // 「田中」と入力してクリックすると「こんにちは、田中さん」と表示される
+
+
+    // 問5 カウンター
+    // 個数を記録する変数を用意し、＋ボタンで1増やし、－ボタンで1減らして、#count に表示してください。
+    // 【完成イメージ】
+    // ＋を3回押すと「3」、そこから－を1回押すと「2」になる
+
+
+    // 問6 input イベント
+    // #comment に文字が入力されるたびに、入力された文字数を #comment-length に表示してください。
+    // 文字数は value.length で調べられます。
+    // 【完成イメージ】
+    // 「こんにちは」と入力すると「5文字」と表示される
+
+
+    // 問7 submit イベント
+    // #login-form が送信されたら、preventDefault() で送信を止めてください。
+    // そのうえで、#email に入力された値を使って、#login-message にメッセージを表示してください。
+    // 【完成イメージ】
+    // 「test@example.com」と入力してログインを押すと、ページが再読み込みされずに「test@example.com でログインします」と表示される
+
+
+    // 問8 まとめ（ドロワーメニュー）
+    // #menu-open をクリックしたら #drawer に is-open クラスを付け、#menu-close をクリックしたら外してください。
+    // 【完成イメージ】
+    // 「メニューを開く」を押すと右からメニューが出てきて、「閉じる」を押すと戻る
+
+  </script>
+</body>
+
+</html>
