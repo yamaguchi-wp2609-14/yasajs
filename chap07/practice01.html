@@ -116,6 +116,7 @@
     // const openButton = document.querySelector('#open-button')
     const openButton = document.querySelector('#open-button');
     const status = document.querySelector('#status');
+
     openButton.addEventListener('click',function(){ status.textContent = '営業中'
     });
 
@@ -124,25 +125,70 @@
     // #detail-button をクリックしたら、classList.toggle() で #detail の is-hidden クラスを付け外ししてください。
     // 【完成イメージ】
     // クリックするたびに、営業時間の文章が表示・非表示を繰り返す
-
+    
+    const detailButton = document.querySelector('#detail-button');
+    console.log(detailButton); // detailButtonの代入内容を確認
+    const detail = document.querySelector('#detail');
+    console.log(detail); // detaiの代入内容を確認
+    detailButton.addEventListener('click',function(){detail.classList.toggle('is-hidden')
+    });
+    
 
     // 問4 入力された値を使う
     // #greet-button をクリックしたら、#name-input に入力された値（value）を使って、#greet-message にあいさつを表示してください。
     // 【完成イメージ】
     // 「田中」と入力してクリックすると「こんにちは、田中さん」と表示される
+    // greet-button=あいさつ　name-input＝なまえのところ　greet-message59行目の空のPタグ部分
+    const greetBtn = document.querySelector('#greet-button');
+    const greetMess = document.querySelector('#greet-message');
+    const nameInput = document.querySelector('#name-input');
 
+    console.log(greetBtn,greetMess,nameInput);
+
+    //greetBtnをクリックしたら入力したnameInputに入力されたgreetMessで表示される
+    greetBtn.addEventListener('click',function(){ 
+      greetMess.textContent =`こんにちは${nameInput.value}さん`
+    });
+
+
+    // nameInput.textContent = greetMess
+    // nameInput.addEventListener('click',function(event){});
+    
+    
+    // greetMess.textContent = nameInput;
+   
 
     // 問5 カウンター
     // 個数を記録する変数を用意し、＋ボタンで1増やし、－ボタンで1減らして、#count に表示してください。
     // 【完成イメージ】
     // ＋を3回押すと「3」、そこから－を1回押すと「2」になる
+    // let count = 0;
+    // console.log(count);
+    const count = document.querySelector('#count');
+    const plusBtn = document.querySelector('#plus-button');
+    const minusBtn = document.querySelector('#minus-button');
+    console.log(plusBtn,minusBtn,count);
+    let num = 0;
 
+    plusBtn.addEventListener('click',function(){num += 1;
+      count.textContent = num;
+    });
+    minusBtn.addEventListener('click',function(){num -= 1;
+      count.textContent = num;
+    });
 
     // 問6 input イベント
     // #comment に文字が入力されるたびに、入力された文字数を #comment-length に表示してください。
     // 文字数は value.length で調べられます。
     // 【完成イメージ】
     // 「こんにちは」と入力すると「5文字」と表示される
+    const comment = document.querySelector('#comment');
+    const commentLength = document.querySelector('#comment-length');
+
+     comment.addEventListener('input',function(){
+      commentLength.textContent =`${comment.value.length}文字`;
+     })
+
 
 
     // 問7 submit イベント
@@ -151,11 +197,30 @@
     // 【完成イメージ】
     // 「test@example.com」と入力してログインを押すと、ページが再読み込みされずに「test@example.com でログインします」と表示される
 
+     const loginForm = document.querySelector('#login-form');
+     const loginEmail = document.querySelector('#email');
+     const loginMsg = document.querySelector('#login-message');
+
+     loginForm.addEventListener('submit',function(event){
+      event.preventDefault();
+      loginMsg.textContent = `${email.value}でログインします。`
+
+     });
 
     // 問8 まとめ（ドロワーメニュー）
     // #menu-open をクリックしたら #drawer に is-open クラスを付け、#menu-close をクリックしたら外してください。
     // 【完成イメージ】
     // 「メニューを開く」を押すと右からメニューが出てきて、「閉じる」を押すと戻る
+     const menuOpen = document.querySelector('#menu-open');
+     const drawer = document.querySelector('#drawer');
+     const menuClose = document.querySelector('#menu-close');
+
+     menuOpen.addEventListener('click',function(){drawer.classList.add('is-open');
+    });
+    menuClose.addEventListener('click',function(){drawer.classList.remove('is-open');
+    });
+
+
 
   </script>
 </body>
