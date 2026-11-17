@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件分岐</title>
+</head>
+<body>
+    <h1>条件分岐</h1>
+    <script>
+    // let budget = prompt('数字を入力してください')
+    // budget = parseFloat(budget);
+    // let isHungry = confirm('おなかがすいていますか？')
+
+    // if (budget >= 1500){
+    //     console.log('ピザを注文します');}
+    // } else{
+    //     console.log('帰る')
+    // }
+
+    // if (budget >= 1500 && isHungry){
+    //     console.log('ピザを注文します');}
+    // else if(budget >=500 && isHungry){
+    //     console.log('ポテト注文');
+    // } else{
+    //     console.log('帰る');
+    // }
+
+    
+//promptに"雨"と入力されたらconsole.logに「傘を持ってくる」と表示する。
+//"曇り"と入力されたらconsole.logに「折り畳み傘を持ってくる」と表示する。
+//"雨"以外は「エラー」と表示する
+let weather = prompt('お天気は？');
+if (weather == '雨'){
+        console.log('「傘を持ってくる」');       
+} else if(weather == '曇り'){
+    console.log('「折り畳み傘を持ってくる」'); 
+}
+else{console.log('エラー');
+}
+
+// switch(weather) {
+//     case '雨':
+//         console.log("傘");
+//         break;
+//     case '曇り':
+//        console.log("折り畳み");
+//        break;
+//     case '雪':
+//        console.log("長靴");
+//        break;
+//     default:
+//         console.log("エラー");
+// }
+
+    </script>
+</body>
+</html>

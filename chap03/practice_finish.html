@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if文の練習</title>
+</head>
+
+<body>
+    <h1>練習（条件分岐）</h1>
+
+
+    <ol>
+        <li>
+            <h2>年齢チェック</h2>
+            <p>年齢の範囲を選びます。20歳以上なら「大人です」、20歳未満なら「子どもです」と表示しましょう。</p>
+            <label for="age">年齢：</label>
+            <select id="age">
+                <option value="adult">20歳以上</option>
+                <option value="child">20歳未満</option>
+            </select>
+            <button id="check-age" type="button">判定</button>
+            <p id="age-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>パスワード確認</h2>
+            <p>入力した文字が「さくら」と一致したら「ログイン成功」、一致しなければ「パスワードが違います」と表示しましょう。</p>
+            <label for="password">パスワード：</label>
+            <input id="password" type="password">
+            <button id="check-password" type="button">確認</button>
+            <p id="password-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>点数の評価</h2>
+            <p>点数の範囲を選び、「よくできました」「合格」「再挑戦」と表示しましょう。</p>
+            <label for="grade">点数：</label>
+            <select id="grade">
+                <option value="excellent">80点以上</option>
+                <option value="pass">60点以上80点未満</option>
+                <option value="retry">60点未満</option>
+            </select>
+            <button id="check-grade" type="button">判定</button>
+            <p id="grade-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>信号機</h2>
+            <p>信号の色を選び、「赤」なら「止まれ」、「黄」なら「注意」、「青」なら「進め」と表示しましょう。</p>
+            <label for="signal">信号の色：</label>
+            <select id="signal">
+                <option value="red">赤</option>
+                <option value="yellow">黄</option>
+                <option value="blue">青</option>
+            </select>
+            <button id="check-signal" type="button">判定</button>
+            <p id="signal-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>文字数チェック</h2>
+            <p>好きな言葉を入力します。文字数が5文字以上なら「5文字以上です」、それ以外なら「5文字未満です」と表示しましょう。</p>
+            <label for="word">好きな言葉：</label>
+            <input id="word" type="text">
+            <button id="check-word" type="button">判定</button>
+            <p id="word-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>クリック回数</h2>
+            <p>ボタンを押すたびに回数を1増やします。5回以上になったら「目標達成！」、それまでは現在の回数を表示しましょう。</p>
+            <button id="count-click" type="button">クリックして数える</button>
+            <p id="count-result" aria-live="polite">クリック回数：0回</p>
+        </li>
+        <li>
+            <h2>ちょうどよい気温</h2>
+            <p>気温を入力します。20度以上かつ25度以下なら「過ごしやすいです！」、それ以外なら「上着などで調節しましょう」と表示しましょう。</p>
+            <label for="comfortable-temperature">気温（度）：</label>
+            <input id="comfortable-temperature" type="number">
+            <button id="check-comfortable-temperature" type="button">判定</button>
+            <p id="comfortable-temperature-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>両方できたら遊べる</h2>
+            <p>宿題とお手伝いの両方が「できた」なら「遊びに行けます！」、どちらかが終わっていなければ「先にやることを終わらせよう」と表示しましょう。</p>
+            <label for="homework">宿題：</label>
+            <select id="homework">
+                <option value="yes">できた</option>
+                <option value="no">まだ</option>
+            </select>
+            <label for="chores">お手伝い：</label>
+            <select id="chores">
+                <option value="yes">できた</option>
+                <option value="no">まだ</option>
+            </select>
+            <button id="check-tasks" type="button">判定</button>
+            <p id="tasks-result" aria-live="polite"></p>
+        </li>
+        <li>
+            <h2>曜日</h2>
+            <label for="dayInput">1から7までの数字を入力してください：</label>
+            <input id="dayInput" type="number" min="1" max="7" placeholder="入力" style="width: 40px;">
+            <button id="dayButton">判定</button>
+            <p id="dayMessage"></p>
+        </li>
+    </ol>
+    <script>
+        // 問1
+        // #check-age をクリックしたら、#age で選択された年齢を使って判定してください。
+        // 20歳以上なら「大人です」、20歳未満なら「子どもです」と
+        // #age-result に表示してください。
+        // 【完成イメージ】
+        // 「20歳以上」を選んでクリックすると「大人です」と表示される
+        document.querySelector("#check-age").addEventListener("click", function () {
+            const age = document.querySelector("#age").value;
+            const result = document.querySelector("#age-result");
+
+            if (age === "adult") {
+                result.textContent = "大人です";
+            } else {
+                result.textContent = "子どもです";
+            }
+        });
+
+        // 問2
+        // #check-password をクリックしたら、#password に入力された文字を使って判定してください。
+        // 入力が「さくら」と一致したら「ログイン成功」、
+        // 一致しなければ「パスワードが違います」と #password-result に表示してください。
+        // 【完成イメージ】
+        // 「さくら」と入力してクリックすると「ログイン成功」と表示される
+        document.querySelector("#check-password").addEventListener("click", function () {
+            const password = document.querySelector("#password").value;
+            const result = document.querySelector("#password-result");
+
+            if (password === "さくら") {
+                result.textContent = "ログイン成功";
+            } else {
+                result.textContent = "パスワードが違います";
+            }
+        });
+
+        // 問3
+        // #check-grade をクリックしたら、#grade で選択された点数を使って判定してください。
+        // 80点以上なら「よくできました」、60点以上80点未満なら「合格」、
+        // 60点未満なら「再挑戦」と #grade-result に表示してください。
+        // 【完成イメージ】
+        // 「60点以上80点未満」を選んでクリックすると「合格」と表示される
+        document.querySelector("#check-grade").addEventListener("click", function () {
+            const grade = document.querySelector("#grade").value;
+            const result = document.querySelector("#grade-result");
+
+            if (grade === "excellent") {
+                result.textContent = "よくできました";
+            } else if (grade === "pass") {
+                result.textContent = "合格";
+            } else {
+                result.textContent = "再挑戦";
+            }
+        });
+
+        // 問4
+        // #check-signal をクリックしたら、#signal で選択された色を使って判定してください。
+        // 赤なら「止まれ」、黄なら「注意」、青なら「進め」と
+        // #signal-result に表示してください。
+        // 【完成イメージ】
+        // 「赤」を選んでクリックすると「止まれ」と表示される
+        document.querySelector("#check-signal").addEventListener("click", function () {
+            const signal = document.querySelector("#signal").value;
+            const result = document.querySelector("#signal-result");
+
+            if (signal === "red") {
+                result.textContent = "止まれ";
+            } else if (signal === "yellow") {
+                result.textContent = "注意";
+            } else if (signal === "blue") {
+                result.textContent = "進め";
+            }
+        });
+
+        // 問5
+        // #check-word をクリックしたら、#word に入力された言葉の文字数を使って判定してください。
+        // 5文字以上なら「5文字以上です」、それ以外なら「5文字未満です」と
+        // #word-result に表示してください。
+        // 【完成イメージ】
+        // 「さくらんぼ」と入力してクリックすると「5文字以上です」と表示される
+        document.querySelector("#check-word").addEventListener("click", function () {
+            const word = document.querySelector("#word").value;
+            const result = document.querySelector("#word-result");
+
+            if (word.length >= 5) {
+                result.textContent = "5文字以上です";
+            } else {
+                result.textContent = "5文字未満です";
+            }
+        });
+
+        // 問6
+        // #count-click をクリックするたびに、クリック回数を1増やしてください。
+        // 5回以上になったら「目標達成！」と回数を #count-result に表示し、
+        // 5回未満なら現在のクリック回数を表示してください。
+        // 【完成イメージ】
+        // 5回クリックすると「目標達成！クリック回数：5回」と表示される
+        let count = 0;
+        document.querySelector("#count-click").addEventListener("click", function () {
+            const result = document.querySelector("#count-result");
+            count += 1;
+
+            if (count >= 5) {
+                result.textContent = `目標達成！クリック回数：${count}回`;
+            } else {
+                result.textContent = `クリック回数：${count}回`;
+            }
+        });
+
+        // 問7
+        // #check-comfortable-temperature をクリックしたら、
+        // #comfortable-temperature に入力された気温を使って判定してください。
+        // 20度以上かつ25度以下なら「過ごしやすいです！」、
+        // それ以外なら「上着などで調節しましょう」と #comfortable-temperature-result に表示してください。
+        // 【完成イメージ】
+        // 「22」と入力してクリックすると「過ごしやすいです！」と表示される
+        document.querySelector("#check-comfortable-temperature").addEventListener("click", function () {
+            const temperatureInput = document.querySelector("#comfortable-temperature");
+            const temperature = temperatureInput.value;
+            const result = document.querySelector("#comfortable-temperature-result");
+
+            if (temperatureInput.value === "") {
+                result.textContent = "気温を入力してください";
+            } else if (temperature >= 20 && temperature <= 25) {
+                result.textContent = "過ごしやすいです！";
+            } else {
+                result.textContent = "上着などで調節しましょう";
+            }
+        });
+
+
+        // 問8
+        // #check-tasks をクリックしたら、#homework と #chores の選択内容を使って判定してください。
+        // 宿題とお手伝いの両方が「できた」なら「遊びに行けます！」、
+        // それ以外なら「先にやることを終わらせよう」と #tasks-result に表示してください。
+        // 【完成イメージ】
+        // 宿題とお手伝いの両方で「できた」を選ぶと「遊びに行けます！」と表示される
+        document.querySelector("#check-tasks").addEventListener("click", function () {
+            const homework = document.querySelector("#homework").value;
+            const chores = document.querySelector("#chores").value;
+            const result = document.querySelector("#tasks-result");
+
+            if (homework === "yes" && chores === "yes") {
+                result.textContent = "遊びに行けます！";
+            } else {
+                result.textContent = "先にやることを終わらせよう";
+            }
+        });
+
+        // 問9
+        // #dayButton をクリックしたら、#dayInput に入力された数字に対応する曜日を
+        // #dayMessage に表示してください。1は月曜日、2は火曜日、3は水曜日、
+        // 4は木曜日、5は金曜日、6は土曜日、7は日曜日とします。
+        // それ以外の値なら「1から7の数字を入力してください」と表示してください。
+        // 【完成イメージ】
+        // 「1」と入力してクリックすると「月曜日」と表示される
+        const dayInput = document.getElementById("dayInput");
+        const dayButton = document.getElementById("dayButton");
+        const dayMessage = document.getElementById("dayMessage");
+
+        dayButton.addEventListener("click", function () {
+            const day = Number(dayInput.value);
+
+            switch (day) {
+                case 1:
+                    dayMessage.textContent = "月曜日";
+                    break;
+                case 2:
+                    dayMessage.textContent = "火曜日";
+                    break;
+                case 3:
+                    dayMessage.textContent = "水曜日";
+                    break;
+                case 4:
+                    dayMessage.textContent = "木曜日";
+                    break;
+                case 5:
+                    dayMessage.textContent = "金曜日";
+                    break;
+                case 6:
+                    dayMessage.textContent = "土曜日";
+                    break;
+                case 7:
+                    dayMessage.textContent = "日曜日";
+                    break;
+                default:
+                    dayMessage.textContent = "1から7の数字を入力してください";
+            }
+        });
+    </script>
+</body>
+
+</html>
