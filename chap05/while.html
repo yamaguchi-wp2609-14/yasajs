@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While文</title>
+</head>
+<body>
+    <h1>While文</h1>
+    <script>
+        //オリンピックイヤーを表示
+        // 変数yearにして2000を代入
+        let year = 2000;
+        //yearが2100になるまで
+        while (year <= 2100){
+            if(year % 4 === 0){
+            console.log(`${year}年:夏`);
+         } else{
+            console.log(`${year}年:冬`);
+         }
+         year += 2;
+        }       
+    </script>
+</body>
+</html>
