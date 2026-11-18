@@ -114,30 +114,39 @@
         console.log(age)
         const ageResult = document.querySelector('#age-result')
         console.log(ageResult)
+        checkAge.addEventListener('click',function(){
+           const ageValue= age.value;
+           if(ageValue === 'adult'){
+            ageResult.textContent = '大人です';
+           }else{
+            ageResult.textContent = '子供です';
+           }
 
-    /checkAge.addEventListener('click',function(){
-     if (age >= 20){
-        console.log('「大人です」');       
-     } else (age <= 20){
-     console.log('「子どもです」'); 
-     }
-ageResult.textContent =`${comment.value.length}文字`;
-    }
-
-
-
-
-
+        });
 
         // 問2
         // #check-password をクリックしたら、#password に入力された文字を使って判定してください。
-        // 入力が「さくら」と一致したら「ログイン成功」、
+        // 入力が「1234」と一致したら「ログイン成功」、
         // 一致しなければ「パスワードが違います」と #password-result に表示してください。
         // 【完成イメージ】
-        // 「さくら」と入力してクリックすると「ログイン成功」と表示される
+        // 「1234」と入力してクリックすると「ログイン成功」と表示される
 
-
-
+        const checkPass = document.querySelector('#check-password');
+        const passwordInput = document.querySelector('#password');
+        const passResult = document.querySelector(' #password-result');
+        
+        checkPass.addEventListener('click',function(){
+            const passwordValue = passwordInput.value;
+            console.log(passwordValue);
+            if(passwordValue === '1234'){
+                passResult.textContent = 'ログイン成功';
+            }else{
+                passResult.textContent = 'パスワードが違います';
+            }
+            //参考演算子
+            // passResult.textContent = 
+            // passwordValue === '1234' ? 'ログイン成功' : 'パスワード違います';
+        });
 
         // 問3
         // #check-grade をクリックしたら、#grade で選択された点数を使って判定してください。
@@ -145,17 +154,43 @@ ageResult.textContent =`${comment.value.length}文字`;
         // 60点未満なら「再挑戦」と #grade-result に表示してください。
         // 【完成イメージ】
         // 「60点以上80点未満」を選んでクリックすると「合格」と表示される
- 
+         const checkGrade = document.querySelector('#check-grade');
+         const gradeSelect = document.querySelector('#grade');
+         const gradeResult = document.querySelector('#grade-result');
 
+        checkGrade.addEventListener('click',function(){
+            const gradeValue = gradeSelect.value;
+            if(gradeValue === 'excellent'){
+                gradeResult.textContent = 'よくできました。';
+            }else if(gradeValue === 'pass'){
+                gradeResult.textContent = '合格。';
+            }else{
+                gradeResult.textContent = '再挑戦';
+            }
+
+        });
         // 問4
         // #check-signal をクリックしたら、#signal で選択された色を使って判定してください。
         // 赤なら「止まれ」、黄なら「注意」、青なら「進め」と
         // #signal-result に表示してください。
         // 【完成イメージ】
         // 「赤」を選んでクリックすると「止まれ」と表示される
+        const checkSignal = document.querySelector('#check-signal');
+        const signalSelect = document.querySelector('#signal');
+        const signalResult = document.querySelector('#signal-result');
 
+        checkSignal.addEventListener('click',function(){
 
+            const signalValue = signalSelect.value;
+             if(signalResult === 'red'){
+                signalResult.textContent = 'とまれ';
+            }else if(signalValue === 'yellow'){
+                signalResult.textContent = '注意';
+            }else{
+                signalResult.textContent = '進め';
+            }
 
+        });
 
         // 問5
         // #check-word をクリックしたら、#word に入力された言葉の文字数を使って判定してください。
@@ -164,7 +199,21 @@ ageResult.textContent =`${comment.value.length}文字`;
         // 【完成イメージ】
         // 「さくらんぼ」と入力してクリックすると「5文字以上です」と表示される
 
+         const checkWord = document.querySelector('#check-word');
+         const wordInput = document.querySelector('#word');
+         const wordResult = document.querySelector(' #word-result');
 
+         checkWord.addEventListener('click',function(){
+            const wordValue = wordInput.value;
+             if(wordValue.length >= 5){
+                wordResult.textContent = '５文字以上です';
+            }else{
+                signalResult.textContent = 'ご文字未満です';
+            }
+        });
+
+        //     wordResult.textContent = `5文字${wordValue.length >= 5 ? '以上' : '未満'}です`;
+        //  });
 
 
         // 問6
@@ -173,7 +222,19 @@ ageResult.textContent =`${comment.value.length}文字`;
         // 5回未満なら現在のクリック回数を表示してください。
         // 【完成イメージ】
         // 5回クリックすると「目標達成！クリック回数：5回」と表示される
+         const countClick = document.querySelector('#count-click');
+         const countResult = document.querySelector('#count-result');
+         let countValue = 0;
 
+         countClick.addEventListener('click',function(){
+            countValue += 1;
+            console.log(countValue);
+            if(countResult >= 5){
+                countResult.textContent = `「目標達成！クリック回数:${countValue}回`;
+             } else{
+                    countResult.textContent = `クリック回数:${countValue}回`;
+                }
+         })
 
 
 
@@ -185,6 +246,20 @@ ageResult.textContent =`${comment.value.length}文字`;
         // 【完成イメージ】
         // 「22」と入力してクリックすると「過ごしやすいです！」と表示される
 
+         const checkComfortableTemperature = document.querySelector('#check-comfortable-temperature');
+         const comfortableTemperatureInput = document.querySelector('#comfortable-temperature');
+         const comfortableTemperatureResult = document.querySelector('#comfortable-temperature-result');
+
+         checkComfortableTemperature.addEventListener('click',function(){
+            const comfortableTemperatureValue = parseFloat(comfortableTemperatureInput.value);
+            console.log(comfortableTemperatureValue);
+            if(comfortableTemperatureValue >= 20 && comfortableTemperatureValue <= 25){
+                comfortableTemperatureResult.textContent = '過ごしやすいです！';
+            }else{
+                comfortableTemperatureResult.textContent = '上着などで調節しましょう';
+            }
+
+         });
 
 
         // 問8
@@ -193,7 +268,24 @@ ageResult.textContent =`${comment.value.length}文字`;
         // それ以外なら「先にやることを終わらせよう」と #tasks-result に表示してください。
         // 【完成イメージ】
         // 宿題とお手伝いの両方で「できた」を選ぶと「遊びに行けます！」と表示される
- 
+          const checkTasks = document.querySelector('#check-tasks');
+          const homeworkSelect = document.querySelector('#homework');
+          const choresSelect = document.querySelector(' #chores');
+          const tasksResult = document.querySelector('#tasks-result');
+            checkTasks.addEventListener('click',function(){
+                const homeworkValue = homeworkSelect.value;
+                const charsetValue = choresSelect.value;
+                console.log(homeworkValue,charsetValue);
+
+                if(homeworkValue === 'yes'){
+                    if(charsetValue === 'yes'){
+                        tasksResult.textContent = '遊びに行けます';
+                    }else{tasksResult.textContent = '先にやることを終わらせよう';
+                     }
+                 }else{
+                    tasksResult.textContent = '先にやることを終わらせよう';
+                }
+            });
 
 
 
@@ -205,7 +297,41 @@ ageResult.textContent =`${comment.value.length}文字`;
         // 【完成イメージ】
         // 「1」と入力してクリックすると「月曜日」と表示される
 
+          const dayButton = document.querySelector('#dayButton');
+          const dayInput = document.querySelector('#dayInput');
+          const dayMessage = document.querySelector('#dayMessage');
+           dayButton.addEventListener('click',function(){
+            const dyaValue = parseInt(dayInput.value);
+            console.log(dyaValue);
 
+            switch(dyaValue){
+                case 1:
+                    dayMessage.textContent = '月曜日';
+                break;   
+                case 2:
+                    dayMessage.textContent = '火曜日';
+                break;   
+                case 3:
+                    dayMessage.textContent = '水曜日';
+                break;   
+                case 4:
+                    dayMessage.textContent = '木曜日';
+                break;   
+                case 5:
+                    dayMessage.textContent = '金曜日';
+                break;   
+                case 6:
+                    dayMessage.textContent = '土曜日';
+                break;   
+                case 7:
+                    dayMessage.textContent = '日曜日';
+                break; 
+                default:  
+                    dayMessage.textContent = '1から7の数字を入力してください';
+            }
+
+           });
+         
         
     </script>
 </body>
