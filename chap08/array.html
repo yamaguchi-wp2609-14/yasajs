@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配列</title>
+</head>
+<body>
+    <h1>配列</h1>
+    <ul class="drink-list">
+
+    </ul>
+
+    <script>
+    const drink = ['コーラ','オレンジジュース','ウーロン茶']
+    console.log(drink);
+    console.log(drink[2]);
+    console.log(`ドリンクは${drink.length}種類ご用意しています。`);
+    //ウーロン茶をジャスミン茶に変更してください。
+    drink[2] = `ジャスミン茶`;
+    console.log(drink[2]);
+    //ジンジャーエールを追加
+    drink[3]='ジンジャーエール';
+    console.log(drink);
+    // drink[4]='カルピス';
+    // console.log(drink);
+    drink[4]='カルピスソーダ';
+    drink[5]='アップルジュース';
+
+    //飲み物の名前の一覧表
+    for(let i = 0; i < drink.length ; i++){
+        console.log(drink[i]);
+    }
+    </script>
+</body>
+
+</html>
