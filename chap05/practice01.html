@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習1（繰り返し）</title>
+</head>
+
+<body>
+  <h1>練習1（繰り返し）</h1>
+
+  <!-- 問1 -->
+  <h2>問1</h2>
+  <button id="login-button">ログイン</button>
+  <p id="login-message"></p>
+
+  <!-- 問2 -->
+  <h2>問2</h2>
+  <div id="stars">
+   
+  </div>
+
+  <script>
+    // 問1 正しいパスワードを入力するまで聞き続ける
+    // ログインボタン（#login-button）を押したら、prompt() でパスワードを入力してもらいます。
+    // パスワードが「12345」でない間は、while 文で何度でも prompt() を開いてください。
+    // 正しく入力できたら、#login-message に「ログインしました」と表示します。
+    // 【完成イメージ】間違えると入力画面がまた開き、「12345」を入力すると「ログインしました」と表示される
+    const loginButton= document.querySelector("#login-button");
+    const loginMessage= document.querySelector("#login-message");
+    loginButton.addEventListener('click',function(){
+      let password = prompt('パスワードを入力してください。');
+      while(password !== '12345'){
+        password = prompt('パスワードが違います。もう一度入力してください');
+      }
+      loginMessage.textContent ='「ログインしました」';
+    });
+    
+
+    // 問2 ★を5×5に並べる
+    // for 文を使って、★を横に5個・縦に5段並べた文字列を作り、#stars の innerHTML に入れてください。
+    // 【完成イメージ】
+    // ★★★★★
+    // ★★★★★
+    // ★★★★★
+    // ★★★★★
+    // ★★★★★
+    const starsArea= document.querySelector('#stars');
+    let starsHTMl = '';
+
+    //★を作る
+    //<br>★５で改行いれていた場合
+    // for (let i = 1; i <= 25; i++) {
+    //   starsHTMl += '★'
+    // if(i % 5 === 0){
+    //   //iが５の倍数の時
+    //   starsHTMl += '<br>' ;
+    // }      
+    // }
+ 
+    //★を作る（パターンB）<p>タグで★５
+      for (let j = 1; j <= 5; j++){
+        starsHTMl += '<p>';
+      for (let i = 1; i <= 5; i++){
+        starsHTMl += '★'
+        
+      }
+      starsHTMl += '</p>';
+    }
+    console.log(starsHTMl);
+
+    //★を作る
+    starsArea.innerHTML = starsHTMl
+  </script>
+</body>
+
+</html>
