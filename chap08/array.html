@@ -14,7 +14,7 @@
     </ul>
 
     <script>
-        const drink = ['コーラ', 'オレンジジュース', 'ウーロン茶']
+        const drink = ['コーラ', 'オレンジジュース', 'ウーロン茶'];
         console.log(drink);
         console.log(drink[2]);
         console.log(`ドリンクは${drink.length}種類ご用意しています。`);
@@ -30,20 +30,57 @@
         drink[5] = 'アップルジュース';
 
         //飲み物の名前の一覧表
-        const drinkArea = document.querySelector('.drink-list');
+        // const drinkList = document.querySelector('.drink-list');
+        // // for (let i = 0; i < drink.length; i++) {
+        // //     console.log(drink[i]);
+        // // }
+
+        // let drinkHTML = '';
+
         // for (let i = 0; i < drink.length; i++) {
-        //     console.log(drink[i]);
+        //     // drinkHTML += '<li>';
+        //     // drinkHTML += drink[i];
+        //     // drinkHTML += '</li>';
+        //     drinkHTML += '<li>' + drink[i] + '</li>';
+        //     drinkList.innerHTML = drinkHTML
         // }
 
-        let drinkHTML = '';
+const drinkList = document.querySelector('.drink-list');
+for (let i = 0; i < drink.length; i++) {
+    const liElm = document.createElement('li');
+    liElm.textContent = drink[i];
+    console.log(drink[i]);
+    drinkList.append(liElm);
+}
+//配列操作メソッド
+//配列の末尾にデータを追加するメソッド.push（）
+drink.push('コーン茶');
+console.log(drink);
 
-        for (let i = 0; i < drink.length; i++) {
-            drinkHTML += '<li>';
-            drinkHTML += drink[i];
-            drinkHTML += '</li>';
+//配列の最初のデータを削除するメソッド:shift()
+drink.shift();
+console.log(drink);
 
-            drinkArea.innerHTML = drinkHTML
-        }
+//配列の最後のデータを削除:pop()
+drink.pop();
+console.log(drink);
+
+//配列の最初にデータを追加するメソッド:unshift()
+drink.unshift('プーアル茶');
+console.log(drink);
+
+//配列に特定の要素が含まれるか検査するメソッド:includes()
+console.log(drink.includes('オレンジジュース'));
+console.log(drink.includes('みかんジュース'));
+
+//配列の要素をひとつづつ処理するメソッド：forEach()
+drink.forEach((item)=>{
+    console.log(item);
+});
+//インデックスも表示させる
+drink.forEach((item,index)=>{
+    console.log(`${item}のインデックスは${index}です。`);
+});
     </script>
 </body>
 

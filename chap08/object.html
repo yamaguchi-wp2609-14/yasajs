@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オブジェクト</title>
+</head>
+
+<body>
+    <h1>オブジェクト</h1>
+    <script>
+        let human = {
+            name:'山田',
+            age:31,
+            birthplace:'福岡県',
+            //趣味
+            hobby:['読書','キャンプ','釣り',],
+            sayHallo: () => {
+            // sayHallo:function(){
+                console.log(`こんにちは、私の名前は${this.name}です。${this.birthplace}出身です。`);
+            },
+            sayhobby:function(){
+                //配列のデータを引数を区切り文字として一つの文字列データに連結するメソッド：join()
+                const hobbyText = this.hobby.join('と');
+                console.log(`私の趣味は${hobbyText}です。`);
+            }
+            
+        }
+       human.sayHallo(); 
+       human.sayhobby();//読書とキャンプと釣りです。
+
+    //カフェメニュー
+    //ショートケーキ:450円
+    //レアチーズケージ:550円
+    //ガトーショコラ:600円
+    const menu = [
+        {name:'ショートケーキ',
+         price:450   
+        },
+        {name:'レアチーズケーキ',
+        price:550
+     },
+         {name:'ガトーショコラ',
+    price:600
+    }];
+    //ショートケーキは450円です
+    console.log(`${menu[0].name}は${menu[0].price}円です。`);
+
+    //forEachをつかって全部のケーキについて表示
+    menu.forEach((item) => {
+        // console.log(item);
+        console.log(`${item.name}は${item.price}円です。`);
+    });
+
+    //forEachをつかってケーキの合計金額を計算して、コンソールに「合計金額は1600円です」と表示
+let totalPrice = 0;
+menu.forEach((item)=>{
+    console.log(item.price);
+    totalPrice += item.price;
+
+});
+console.log(`合計金額は${totalPrice}円です。`)
+
+
+    </script>
+</body>
+
+</html>
