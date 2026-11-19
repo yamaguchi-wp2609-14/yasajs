@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習1（配列・オブジェクトの配列）</title>
+  <style>
+    .is-sold-out {
+      color: #999;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>練習1（配列・オブジェクトの配列）</h1>
+
+  <!-- 問7 -->
+  <h2>問7</h2>
+  <ul id="menu-list"></ul>
+
+  <!-- 問8 -->
+  <h2>問8</h2>
+  <select id="size-select"></select>
+
+  <!-- 問9 -->
+  <h2>問9</h2>
+  <ul id="stock-list"></ul>
+
+  <script>
+    // 問1〜問6は、出力例と同じ文字列をコンソールに出力してください。
+    // 問7〜問9は、HTMLの要素を操作して、ブラウザの表示が【完成イメージ】のようになるようにしてください。
+    // 変数やプロパティの値を含む文字列は、テンプレート文字列（`${}`）で作成してください。
+
+
+    // 問1 配列の作成と取り出し
+    // 「りんご」「バナナ」「みかん」を要素に持つ配列を作り、定数 fruits に代入してください。
+    // インデックスで要素を取り出し、length で要素の数を調べて出力してください。
+    // 【出力例】
+    // 1番目はりんごです
+    // 3番目はみかんです
+    // 全部で3個です
+    const fruits=['りんご','バナナ','みかん',]
+   console.log(fruits);
+   console.log(fruits[0]);
+   console.log(`1番目は${fruits[0]}です`);
+   console.log(`3番目は${fruits[2]}です`);
+   console.log(`全部で${fruits.length}個です。`) 
+
+    // 問2 要素の書き換えと追加
+    // 問1の fruits の2番目を「ぶどう」に書き換え、push() で最後に「いちご」を追加してください。
+    // 【出力例】
+    // 2番目はぶどうです
+    // 最後はいちごです（全部で4個）
+     fruits[1] = 'ぶどう';
+        console.log(`2番目は${fruits[1]}です。`);
+    fruits.push('いちご');
+      console.log(`最後は${fruits[3]}です（全部で${fruits.length}個）`);
+
+    // 問3 for 文で配列を取り出す
+    // for 文とインデックスを使って、問2の fruits の要素を番号付きで出力してください。
+    // 【出力例】
+    // 1. りんご
+    // 2. ぶどう
+    // 3. みかん
+    // 4. いちご
+    for (let i = 0; i < fruits.length ; i++) {
+      console.log(`${i + 1}.${fruits[i]}`);
+    }
+
+    // 問4 forEach() と合計
+    // 次の配列の点数の合計と平均を、forEach() を使って求めて出力してください。
+    const scores = [80, 65, 92, 70, 58];
+    // 【出力例】
+    // 合計は365点です
+    // 平均は73点です
+let total = 0;   
+scores.forEach((score)=>{
+    total += score
+});
+console.log(`合計は${total}点です。`)
+let average = total / scores.length;
+console.log(`平均は${average}点です。`)
+
+    // 問5 forEach() と if 文
+    // 問4の scores のうち、70点以上の点数だけを出力し、最後に70点以上の人数を出力してください。
+    // 【出力例】
+    // 80点
+    // 92点
+    // 70点
+    // 70点以上は3人です
+    let scoreCount = 0;
+    scores.forEach((score)=>{
+      if(score >= 70){
+        console.log(`${score}点`);
+        scoreCount++;
+      }
+
+    });
+    console.log(`70点以上は${scoreCount}人です。`);
+
+    // 問6 オブジェクトの配列
+    // 次の配列の商品を forEach() で1つずつ取り出し、商品名と値段を出力してください。
+    // 最後に、配列の2番目の商品の名前を出力してください。
+    const products = [
+      { name: 'カフェラテ', price: 450 },
+      { name: 'ホットドッグ', price: 380 },
+      { name: 'チーズケーキ', price: 500 },
+    ];
+    // 【出力例】
+    // カフェラテ：450円
+    // ホットドッグ：380円
+    // チーズケーキ：500円
+    // 2番目の商品はホットドッグです
+products.forEach((item)=>{
+  console.log(`${item.name}:${item.price}円です。`);
+});
+   console.log(`2番目の商品は${products[1].name}です。`);
+
+    // 問7 オブジェクトの配列を一覧表示する（innerHTML）
+    // 問6の products を、次の形で #menu-list に一覧表示してください。
+    // 1件分ずつ変数 html に += でつなげ、最後に1回だけ innerHTML に入れます。
+    //   <li>カフェラテ（450円）</li>
+    // 【完成イメージ】
+    // リストに「カフェラテ（450円）」「ホットドッグ（380円）」「チーズケーキ（500円）」が表示される
+    const menuList = document.querySelector('#menu-list');
+    let html = '';
+    products.forEach((product)=>{
+      //HTMLの文字列をつくる
+      html += `<li>${product.name} (${product.price}円) </li>`;
+    });
+    menuList.innerHTML = html;
+
+    // 問8 配列から選択肢を作る（createElement()）
+    // 次の配列の要素ごとに option 要素を createElement() で作り、#size-select に append() してください。
+    // value と textContent には、配列の要素を入れます。
+    const sizes = ['S', 'M', 'L'];
+    // 【完成イメージ】
+    // セレクトボックスで「S」「M」「L」が選べる
+    const sizeSelect = document.querySelector('#size-select');
+    
+
+    sizes.forEach((size)=>{
+      const optionElm = document.createElement('option');
+    optionElm.textContent = size;
+    optionElm.value = size;
+    // console.log(optionElm);
+    sizeSelect.append(optionElm);
+
+    });
+
+
+
+
+    // 問9 まとめ
+    // 次の配列の商品を、#stock-list に一覧表示してください。
+    // 在庫（stock）が0の商品は「（売り切れ）」を付け、li に is-sold-out クラスを付けてください。
+    const items = [
+      { name: 'メロンパン', stock: 3 },
+      { name: 'クロワッサン', stock: 0 },
+      { name: 'あんぱん', stock: 5 },
+    ];
+     // 【完成イメージ】
+    // 「メロンパン（残り3個）」「クロワッサン（売り切れ）」「あんぱん（残り5個）」が表示され、
+    // クロワッサンだけ灰色の取り消し線で表示される
+    const stockList = document.querySelector('#stock-list');
+     console.log(stockList);
+
+     //Aパターン
+//      let stockHTML = '';
+//     items.forEach((item)=>{
+//       if(item.stock > 0){
+//         //在庫あり
+//          stockHTML += `<li>${item.name} (残り${item.stock}個) </li>`;
+//       } else {
+//         //在庫なし
+//         stockHTML += `<li$ class="is-sold-out">${item.name}(売り切れ)</li$>`;
+//       }
+// });
+
+
+//Bパターン
+// let stockHTML = '<li';
+// items.forEach((item)=>{
+//   if(item.stock > 0){
+//     stockHTML += '>';
+//   } else{
+//     stockHTML += ' class="is-sold-out">';
+//   }
+//   stockHTML += `${item.name}`;
+
+//   if(item.stock > 0){
+//     stockHTML += `残り${item.stock}個`;
+//   }
+
+// });
+
+//Cパターン
+let stockHTML = '';
+items.forEach((item)=>{
+  stockHTML += `<li${item.stock > 0 ? '' : ' class="is-sold-out"}>${item.name}(売り切れ)</li>`
+
+});
+   stockList.innerHTML = stockHTML
+   </script>
+</body>
+
+</html>
