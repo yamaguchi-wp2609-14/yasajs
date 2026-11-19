@@ -41,22 +41,22 @@
     // 1番目はりんごです
     // 3番目はみかんです
     // 全部で3個です
-    const fruits=['りんご','バナナ','みかん',]
-   console.log(fruits);
-   console.log(fruits[0]);
-   console.log(`1番目は${fruits[0]}です`);
-   console.log(`3番目は${fruits[2]}です`);
-   console.log(`全部で${fruits.length}個です。`) 
+    const fruits = ['りんご', 'バナナ', 'みかん',]
+    console.log(fruits);
+    console.log(fruits[0]);
+    console.log(`1番目は${fruits[0]}です`);
+    console.log(`3番目は${fruits[2]}です`);
+    console.log(`全部で${fruits.length}個です。`)
 
     // 問2 要素の書き換えと追加
     // 問1の fruits の2番目を「ぶどう」に書き換え、push() で最後に「いちご」を追加してください。
     // 【出力例】
     // 2番目はぶどうです
     // 最後はいちごです（全部で4個）
-     fruits[1] = 'ぶどう';
-        console.log(`2番目は${fruits[1]}です。`);
+    fruits[1] = 'ぶどう';
+    console.log(`2番目は${fruits[1]}です。`);
     fruits.push('いちご');
-      console.log(`最後は${fruits[3]}です（全部で${fruits.length}個）`);
+    console.log(`最後は${fruits[3]}です（全部で${fruits.length}個）`);
 
     // 問3 for 文で配列を取り出す
     // for 文とインデックスを使って、問2の fruits の要素を番号付きで出力してください。
@@ -65,7 +65,7 @@
     // 2. ぶどう
     // 3. みかん
     // 4. いちご
-    for (let i = 0; i < fruits.length ; i++) {
+    for (let i = 0; i < fruits.length; i++) {
       console.log(`${i + 1}.${fruits[i]}`);
     }
 
@@ -75,13 +75,13 @@
     // 【出力例】
     // 合計は365点です
     // 平均は73点です
-let total = 0;   
-scores.forEach((score)=>{
-    total += score
-});
-console.log(`合計は${total}点です。`)
-let average = total / scores.length;
-console.log(`平均は${average}点です。`)
+    let total = 0;
+    scores.forEach((score) => {
+      total += score
+    });
+    console.log(`合計は${total}点です。`)
+    let average = total / scores.length;
+    console.log(`平均は${average}点です。`)
 
     // 問5 forEach() と if 文
     // 問4の scores のうち、70点以上の点数だけを出力し、最後に70点以上の人数を出力してください。
@@ -91,8 +91,8 @@ console.log(`平均は${average}点です。`)
     // 70点
     // 70点以上は3人です
     let scoreCount = 0;
-    scores.forEach((score)=>{
-      if(score >= 70){
+    scores.forEach((score) => {
+      if (score >= 70) {
         console.log(`${score}点`);
         scoreCount++;
       }
@@ -113,10 +113,10 @@ console.log(`平均は${average}点です。`)
     // ホットドッグ：380円
     // チーズケーキ：500円
     // 2番目の商品はホットドッグです
-products.forEach((item)=>{
-  console.log(`${item.name}:${item.price}円です。`);
-});
-   console.log(`2番目の商品は${products[1].name}です。`);
+    products.forEach((item) => {
+      console.log(`${item.name}:${item.price}円です。`);
+    });
+    console.log(`2番目の商品は${products[1].name}です。`);
 
     // 問7 オブジェクトの配列を一覧表示する（innerHTML）
     // 問6の products を、次の形で #menu-list に一覧表示してください。
@@ -126,7 +126,7 @@ products.forEach((item)=>{
     // リストに「カフェラテ（450円）」「ホットドッグ（380円）」「チーズケーキ（500円）」が表示される
     const menuList = document.querySelector('#menu-list');
     let html = '';
-    products.forEach((product)=>{
+    products.forEach((product) => {
       //HTMLの文字列をつくる
       html += `<li>${product.name} (${product.price}円) </li>`;
     });
@@ -139,14 +139,14 @@ products.forEach((item)=>{
     // 【完成イメージ】
     // セレクトボックスで「S」「M」「L」が選べる
     const sizeSelect = document.querySelector('#size-select');
-    
 
-    sizes.forEach((size)=>{
+
+    sizes.forEach((size) => {
       const optionElm = document.createElement('option');
-    optionElm.textContent = size;
-    optionElm.value = size;
-    // console.log(optionElm);
-    sizeSelect.append(optionElm);
+      optionElm.textContent = size;
+      optionElm.value = size;
+      // console.log(optionElm);
+      sizeSelect.append(optionElm);
 
     });
 
@@ -161,49 +161,52 @@ products.forEach((item)=>{
       { name: 'クロワッサン', stock: 0 },
       { name: 'あんぱん', stock: 5 },
     ];
-     // 【完成イメージ】
+    // 【完成イメージ】
     // 「メロンパン（残り3個）」「クロワッサン（売り切れ）」「あんぱん（残り5個）」が表示され、
     // クロワッサンだけ灰色の取り消し線で表示される
     const stockList = document.querySelector('#stock-list');
-     console.log(stockList);
+    console.log(stockList);
 
-     //Aパターン
-//      let stockHTML = '';
-//     items.forEach((item)=>{
-//       if(item.stock > 0){
-//         //在庫あり
-//          stockHTML += `<li>${item.name} (残り${item.stock}個) </li>`;
-//       } else {
-//         //在庫なし
-//         stockHTML += `<li$ class="is-sold-out">${item.name}(売り切れ)</li$>`;
-//       }
-// });
+    //Aパターン
+    let stockHTML = '';
+    items.forEach((item) => {
+      if (item.stock > 0) {
+        //在庫あり
+        stockHTML += `<li>${item.name} (残り${item.stock}個) </li>`;
+      } else {
+        //在庫なし
+        stockHTML += `<li class="is-sold-out">${item.name}(売り切れ)</li>`;
+      }
+    });
+    stockList.innerHTML = stockHTML;
 
+    / / / Bパターン
+    // let stockHtml = '<li';
+    // items.forEach((item) => {
+    //   if (item.stock > 0) {
+    //     stockHtml += '>';
+    //   } else {
+    //     stockHtml += ' class="is-sold-out">';
+    //   }
 
-//Bパターン
-// let stockHTML = '<li';
-// items.forEach((item)=>{
-//   if(item.stock > 0){
-//     stockHTML += '>';
-//   } else{
-//     stockHTML += ' class="is-sold-out">';
-//   }
-//   stockHTML += `${item.name}`;
+    //   stockHtml += `${item.name}（`;
 
-//   if(item.stock > 0){
-//     stockHTML += `残り${item.stock}個`;
-//   }
+    //   if (item.stock > 0) {
+    //     stockHtml += `残り${item.stock}個`;
+    //   } else {
+    //     stockHtml += '売り切れ';
+    //   }
 
-// });
+    //   stockHtml += '）</li><li';
+    // });
 
-//Cパターン
-let stockHTML = '';
-items.forEach((item)=>{
-  stockHTML += `<li${item.stock > 0 ? '' : ' class="is-sold-out"}>${item.name}(売り切れ)</li>`
-
-});
-   stockList.innerHTML = stockHTML
-   </script>
+    // Cパターン
+    // let stockHtml = '';
+    // items.forEach((item)=>{
+    //   stockHtml += `<li${item.stock > 0 ? '' : ' class="is-sold-out"'}>${item.name}（${item.stock > 0 ? `残り${item.stock}個` : '売り切れ'}）</li>`;
+    // });
+    // stockList.innerHTML = stockHtml;
+  </script>
 </body>
 
 </html>

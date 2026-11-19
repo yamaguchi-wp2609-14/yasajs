@@ -33,23 +33,28 @@
     // メニューは全部で5品です
     // 1番目は肉汁あふれる焼き餃子です
 
-       const menus = [
-      { name: '肉汁あふれる焼き餃子', shop:'博多ぎょうざ堂', category:'餃子', pieces:6,price:580, allergens:'小麦'},
-      { name: 'ぷりぷり海老蒸し餃子', shop:'中華食堂 蒸々屋', category:'餃子', pieces:4,price:580, allergens:'えび,小麦' },
-       { name: '手包み肉まん', shop:'中華食堂 蒸々屋', category:'サイド', pieces:null,price:350, allergens:'小麦' },
-       { name: 'レモンチーズのデザート餃子', shop:'Mediterraneo Gyoza	', category:'スイーツ', pieces:3,price:480, allergens:'小麦,乳' },
-       { name: '八女茶ソーダ', shop:'博多ぎょうざ堂', category:'ドリンク', pieces:null,price:350, allergens:'' },
+    const menus = [
+      { name: '肉汁あふれる焼き餃子', shop: '博多ぎょうざ堂', category: '餃子', pieces: 6, price: 580, allergens: ['小麦'] },
+
+      { name: 'ぷりぷり海老蒸し餃子', shop: '中華食堂 蒸々屋', category: '餃子', pieces: 4, price: 580, allergens: ['えび', '小麦'] },
+
+      { name: '手包み肉まん', shop: '中華食堂 蒸々屋', category: 'サイド', pieces: null, price: 350, allergens: ['小麦'] },
+
+      { name: 'レモンチーズのデザート餃子', shop: 'Mediterraneo Gyoza', category: 'スイーツ', pieces: 3, price: 480, allergens: ['小麦', '乳'] },
+
+      { name: '八女茶ソーダ', shop: '博多ぎょうざ堂', category: 'ドリンク', pieces: null, price: 350, allergens: [] },
     ];
-console.log(menus)
-console.log(`メニューは全部で${menus.length}品です。`)
-console.log(`１番目は${menus[0].name}です`)
+    console.log(menus)
+    console.log(`メニューは全部で${menus.length}品です。`)
+    console.log(`１番目は${menus[0].name}です`)
 
     // 問2 オブジェクトの中の配列を取り出す
     // menus の2番目の商品について、アレルゲンの数と、アレルゲンの1つ目を出力してください。
     // 【出力例】
     // ぷりぷり海老蒸し餃子のアレルゲンは2つです
     // 1つ目はえびです
-
+    console.log(`${menus[1].name}のアレルゲンは${menus[1].allergens.length}つです`);
+    console.log(`1つ目は${menus[1].allergens[0]}です`);
 
     // 問3 null かどうかで表示を変える
     // forEach() で商品名と価格を出力してください。
@@ -60,7 +65,11 @@ console.log(`１番目は${menus[0].name}です`)
     // 手包み肉まん：350円
     // レモンチーズのデザート餃子（3個入り）：480円
     // 八女茶ソーダ：350円
-
+    menus.forEach((menu) => {
+      if (menu.pieces !== null) {
+        console.log(`${menu.name}(${menu.pieces}個入り):${menu.price}円`);
+      } else { console.log(`${menu.name}:${menu.price}円`) }
+    });
 
     // 問4 配列を1つの文字列にする（join()）
     // forEach() で商品名とアレルゲンを出力してください。
@@ -72,6 +81,11 @@ console.log(`１番目は${menus[0].name}です`)
     // 手包み肉まん：小麦
     // レモンチーズのデザート餃子：小麦・乳
     // 八女茶ソーダ：アレルゲンなし
+    menus.forEach((menu) => {
+      if (menu.allergens.length > 0) {
+        console.log(`${menu.name}:${menu.allergens.join('・')}`);
+      } else { console.log(`${menu.name}:アレルゲンなし`) }
+    });
 
 
     // 問5 配列に含まれているか調べる（includes()）
@@ -80,7 +94,14 @@ console.log(`１番目は${menus[0].name}です`)
     // 【出力例】
     // ぷりぷり海老蒸し餃子
     // えびを含む商品は1品です
-
+    let count = 0;
+    menus.forEach((menu) => {
+      if (menu.allergens.includes('えび')) {
+        console.log(menu.name); //該当する料理名の表示
+        count++
+      }
+    });
+    console.log(`えびを含む商品は${count}品です`);
 
     // 問6 配列に含まれていないものを探す
     // 「乳」を含まない商品の名前を出力してください。
