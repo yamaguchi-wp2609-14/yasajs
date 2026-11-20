@@ -53,6 +53,7 @@
     // 【出力例】
     // ぷりぷり海老蒸し餃子のアレルゲンは2つです
     // 1つ目はえびです
+    console.log('======問２=====');
     console.log(`${menus[1].name}のアレルゲンは${menus[1].allergens.length}つです`);
     console.log(`1つ目は${menus[1].allergens[0]}です`);
 
@@ -65,6 +66,7 @@
     // 手包み肉まん：350円
     // レモンチーズのデザート餃子（3個入り）：480円
     // 八女茶ソーダ：350円
+    console.log('======問３=====');
     menus.forEach((menu) => {
       if (menu.pieces !== null) {
         console.log(`${menu.name}(${menu.pieces}個入り):${menu.price}円`);
@@ -81,6 +83,7 @@
     // 手包み肉まん：小麦
     // レモンチーズのデザート餃子：小麦・乳
     // 八女茶ソーダ：アレルゲンなし
+    console.log('======問４=====');
     menus.forEach((menu) => {
       if (menu.allergens.length > 0) {
         console.log(`${menu.name}:${menu.allergens.join('・')}`);
@@ -94,11 +97,12 @@
     // 【出力例】
     // ぷりぷり海老蒸し餃子
     // えびを含む商品は1品です
+    console.log('======問５=====');
     let count = 0;
     menus.forEach((menu) => {
       if (menu.allergens.includes('えび')) {
         console.log(menu.name); //該当する料理名の表示
-        count++
+        count++;
       }
     });
     console.log(`えびを含む商品は${count}品です`);
@@ -110,7 +114,12 @@
     // ぷりぷり海老蒸し餃子
     // 手包み肉まん
     // 八女茶ソーダ
-
+  console.log('======問６=====');
+   menus.forEach((menu)=>{
+    if (!menu.allergens.includes('乳')){
+      console.log(menu.name);}
+    // } else{ console.log(menu.name);}
+   });
 
     // 問7 店名で絞り込んで合計する
     // 「博多ぎょうざ堂」の商品の名前と価格を出力し、最後に合計金額を出力してください。
@@ -118,8 +127,15 @@
     // 肉汁あふれる焼き餃子：580円
     // 八女茶ソーダ：350円
     // 博多ぎょうざ堂の合計は930円です
-
-
+    console.log('======問７=====');
+    let total = 0;
+    menus.forEach((menu)=>{
+      // if(menu.shop.includes('博多ぎょうざ堂'))
+      if(menu.shop === '博多ぎょうざ堂')
+     { console.log(`${menu.name}:${menu.price}円`);
+      total += menu.price}
+    });
+    console.log(`博多ぎょうざ堂の合計は${total}円です`);
     // 問8 メニューを一覧表示する
     // menus を、次の形で #menu-list に一覧表示してください。
     // 個数は問3と同じルールで付け、アレルゲンは問4と同じルールで表示します（ただし、ない場合は「なし」）。
@@ -131,6 +147,28 @@
     // 手包み肉まん 350円／アレルゲン：小麦
     // レモンチーズのデザート餃子（3個入り） 480円／アレルゲン：小麦・乳
     // 八女茶ソーダ 350円／アレルゲン：なし
+    console.log('======問８=====')
+    const menuList = document.querySelector('#menu-list');
+    let html = '';
+    
+    menus.forEach((menu)=>{
+      let piecesText = '';
+      let allergensText = 'なし';
+      //piecesTextを作る
+      if(menu.pieces !== null){
+        piecesText = `(${menu.pieces}個入り)`
+      }
+      //allergensTextを作る
+      if(menu.allergens.length > 0){
+      allergensText = `${menu.allergens.join('・')}`;
+      }
+      //li要素一個分のHTML文字列を作って書き足し
+            
+      html += `<li>${menu.name}${piecesText} ${menu.price}円／アレルゲン:${allergensText}</li>`;
+  
+    });
+    menuList.innerHTML = html;
+
 
 
     // 問9 まとめ
@@ -142,6 +180,43 @@
     // 【完成イメージ】
     // 「乳」を選んで押すと「肉汁あふれる焼き餃子」「ぷりぷり海老蒸し餃子」「手包み肉まん」「八女茶ソーダ」が表示される
     // 「小麦」を選んで押すと「八女茶ソーダ」だけが表示される
+    console.log('======問９=====')
+
+    //1.セレクトボックス
+   const allergenSelect = document.querySelector('#allergen-select');
+   allergenList.forEach((item)=>{
+    //option要素作る。
+    const optionElm = document.createElement('option');
+    //option要素のテキストを入れる。
+    optionElm.textContent = item;
+    //option要素のvalue属性を設定する。
+    optionElm.value = item;
+    //allergenSelectにappend()する
+    allergenSelect.append(optionElm);
+
+
+   });
+   //2.フィルタリング
+   const filterBtn = document.querySelector('#filter-button');
+   const safeList = document.querySelector('#safe-list');
+
+   filterBtn.addEventListener('click',() =>{
+    //どの選択肢が選ばれているか取得
+  const selected = allergenSelect.value;
+  console.log(selected);
+  let safehtml='';
+    //選択されているアレルゲンを含まないメニューのみ取り出す
+    menus.forEach((menu) => {
+      if(!menu.allergens.includes(selected)){
+        console.log(menu.name);
+        safehtml += `<li>${menu.name}</li>`
+      }
+      
+    });
+
+    //HTML作る
+    safeList.innerHTML =safehtml;
+   });
 
   </script>
 </body>
