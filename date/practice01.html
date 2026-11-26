@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習1（日付の扱い：Date）</title>
+</head>
+
+<body>
+  <h1>練習1（日付の扱い：Date）</h1>
+
+  <!-- 問4 -->
+  <h2>問4</h2>
+  <input type="date" id="due-input">
+  <button id="check-button">確かめる</button>
+  <p id="result"></p>
+
+  <script>
+    // 問1〜問3は、出力例と同じ文字列をコンソールに出力してください。
+    // 問4は、HTMLの要素を操作して、ブラウザの表示が【完成イメージ】のようになるようにしてください。
+    // 変数やプロパティの値を含む文字列は、テンプレート文字列（`${}`）で作成してください。
+
+    // 問1 曜日を日本語で出力する
+    // new Date() で今の日時を作り、次の配列 weekdays と getDay() を使って、今日の曜日を出力してください。
+    // getDay() は、日曜日が0、月曜日が1、……土曜日が6になります。
+    // 【出力例】（実行した日によって変わります）
+    // 今日は木曜日です
+    const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+       const now = new Date();
+        console.log(`今日は${weekdays[now.getDay()]}曜日です。`);
+
+    // 問2 期限切れかどうかを調べる
+    // 次の today を「今日」として、期日 '2026-11-20' と '2026-12-03' が期限切れかどうかを出力してください。
+    // 期日の文字列に 'T00:00:00' をつなげて Date を作り、< で比べます（前の日付ほど小さい）。
+    // 【出力例】
+    // 2026-11-20 は期限切れです
+    // 2026-12-03 は期限内です
+    const today = new Date('2026-11-26T00:00:00');
+    const due1 = new Date('2026-11-20T00:00:00');
+    const due2 = new Date('2026-12-03T00:00:00');
+
+    if (due1 < today) {
+      console.log('期限切れです');
+    } else {
+      console.log('期限内です');
+    }
+   
+    if (due2 < today) {
+      console.log('期限切れです');
+    } else {
+      console.log('期限内です');
+    }
+   
+
+    // 問3 ToDo の期日を表示用の形にする
+    // 次の配列 todos の forEach() で、タイトルと期日を出力してください。
+    // 期日は replaceAll() で「-」を「/」に置き換えます。問2 の today より前の期日には「（期限切れ）」を付けます。
+    // 【出力例】
+    // 企画書の提出：期限 2026/11/04（期限切れ）
+    // B社アプリ基本設計：期限 2026/11/21（期限切れ）
+    // B社アプリMTG：期限 2026/11/27
+    const todos = [
+      { title: '企画書の提出', due_date: '2026-11-04' },
+      { title: 'B社アプリ基本設計', due_date: '2026-11-21' },
+      { title: 'B社アプリMTG', due_date: '2026-11-27' },
+    ];
+// todos.forEach((todo)=>{
+//   let text = '';
+//   const dueDate = new Date(todo.dueDate + 'T00.00.00');
+//   if(dueDate < today){
+//     text ='(期限切れです);
+
+//   }
+// });
+todos.forEach((todo)=>{
+  let text = '';
+  const dueDate = new Date(todo.dueDate + 'T00.00.00');
+  if(dueDate < today){
+    text='(期限切れ)';
+  }
+  console.log(`${todo.title}:期限${todo.due_date.replaceAll('-','/')}${text}`);
+})
+
+    // 問4 選んだ期日を調べる
+    // 期日（#due-input）を選んで「確かめる」を押したら、本当の今日と比べて、#result に表示してください。
+    // 今日は new Date() で作り、setHours(0, 0, 0, 0) で0時にそろえてから比べます。
+    // ・今日より前：「期限切れです」
+    // ・今日か、今日より後：「期限内です」
+    // 【完成イメージ】昨日の日付を選ぶと「期限切れです」、今日の日付を選ぶと「期限内です」
+
+  const dueInput = document.querySelector('#due-input');
+  const checkBut = document.querySelector('#check-button');
+  const result = document.querySelector('#result');
+
+checkBut.addEventListener('click', () => {
+  const dueValue = dueInput.value;
+  console.log(dueValue);
+  const selectedDate = new Date(dueValue + 'T00.00.00');
+  const realToday = new Date();
+  realToday.setHours(0, 0, 0, 0);
+  console.log(realToday);
+
+   if(selectedDate < realToday){
+    result.textContent = '期限切れです。'
+   }else{
+    result.textContent = '期限内です。'
+  }
+});
+
+  </script>
+
+</body>
+
+</html>

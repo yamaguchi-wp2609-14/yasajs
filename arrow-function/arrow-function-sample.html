@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アロー関数の省略した書き方 サンプル</title>
+</head>
+
+<body>
+  <h1>アロー関数の省略した書き方 サンプル</h1>
+  <p>開発者ツールのコンソールを開いて、出力を確かめましょう。</p>
+  <p>AIのコードでは、アロー関数の一部を省いた書き方がよく出てきます。自分で書くときは省かなくてよいので、読めるようにしておきましょう。</p>
+  <button id="hello-button">押してみる</button>
+
+  <script>
+    const todos = [
+      { id: 1, title: 'A社MTG', is_done: true },
+      { id: 2, title: '企画書の提出', is_done: false },
+      { id: 3, title: '外注デザイナー検討', is_done: true },
+    ];
+
+
+    // ===== 0. 授業で書いてきた形 =====
+    todos.forEach((todo) => {
+      console.log(todo.title);
+    });
+
+    // function を使うと、こう書ける（同じ意味）
+    todos.forEach(function (todo) {
+      console.log(todo.title);
+    });
+
+
+    // ===== 1. 引数が1つなら、( ) を省ける =====
+    todos.forEach(todo => {
+      console.log(todo.title);
+    });
+
+    // 引数が0個か2個以上のときは、( ) は省けない
+    document.querySelector('#hello-button').addEventListener('click', () => {
+      console.log('押された');
+    });
+    todos.forEach((todo, index) => {
+      console.log(`${index}番目：${todo.title}`);
+    });
+
+
+    // ===== 2. 処理が1つなら、{ } を省ける =====
+    // { } を省くと、=> の右側の値が、そのまま返される（return を書かない）
+    const doneTodos1 = todos.filter((todo) => todo.is_done);
+
+    // 省かずに書くと、こうなる（同じ意味）
+    const doneTodos2 = todos.filter((todo) => {
+      return todo.is_done;
+    });
+    console.log(doneTodos1, doneTodos2);
+
+    // 値を返さない処理でも、1つなら { } を省いて1行で書かれることがある
+    todos.forEach((todo) => console.log(todo.id));
+
+
+    // ===== 3. よくある間違い：{ } を書いたのに return がない =====
+    // { } を書いたときは、return を書かないと何も返らない（undefined になる）
+    const doneTodos3 = todos.filter((todo) => {
+      todo.is_done;
+    });
+    console.log(doneTodos3); // [] になってしまう
+
+
+    // ===== 4. オブジェクトを返すときは、( ) で囲む =====
+    // { } だけだと、処理のかたまりの { } と見分けがつかないため
+    const items = todos.map((todo) => ({ id: todo.id, title: todo.title }));
+    console.log(items);
+
+
+    // ===== 5. 全部省くと =====
+    // ( ) も { } も return も省いた形。AIのコードでは、これが一番よく出てくる
+    const titles = todos.map(todo => todo.title);
+    console.log(titles);
+
+
+    // ===== 6. 試してみよう =====
+    // 次のコードを、省かない形（( ) と { } と return を書いた形）に書き直してみよう
+    // const ids = todos.map(todo => todo.id);
+
+const ids = todos.map((todo) => {return todo.id});
+
+console.log(ids);
+
+    // const notDone = todos.filter(todo => !todo.is_done);
+
+    const notDone = todos.filter((todo) => {return !todo.is_done});
+
+    console.log(notDone);
+    
+  </script>
+</body>
+
+</html>

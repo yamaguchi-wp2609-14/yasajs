@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配列のメソッド（filter・find・map）サンプル</title>
+</head>
+
+<body>
+  <h1>配列のメソッド（filter・find・map）サンプル</h1>
+  <p>開発者ツールのコンソールを開いて、出力を確かめましょう。</p>
+  <p>AIのコードによく出てくるメソッドです。自分で書けなくてよいので、forEach() の書き方と比べて読めるようにしましょう。</p>
+  <p>(todo) =&gt; todo.is_done のような省略した書き方は、arrow-function-sample.html で確かめましょう。</p>
+
+  <script>
+    const todos = [
+      { id: 1, title: 'A社MTG', due_date: '2026-11-01', is_done: true },
+      { id: 2, title: '企画書の提出', due_date: '2026-11-04', is_done: false },
+      { id: 3, title: '外注デザイナー検討', due_date: '2026-11-05', is_done: true },
+      { id: 4, title: 'B社アプリ基本設計', due_date: '2026-11-21', is_done: false },
+      { id: 5, title: 'B社アプリMTG', due_date: '2026-11-27', is_done: false },
+    ];
+
+
+    // ===== 1. filter()：条件に合う要素だけを集める =====
+    // コールバック関数が true を返した要素だけで、新しい配列を作る
+    const doneByFilter = todos.filter((todo) => todo.is_done);
+    console.log('filter()', doneByFilter);
+
+    // forEach() で書くと
+    const doneByForEach = [];
+    todos.forEach((todo) => {
+      if (todo.is_done) {
+        doneByForEach.push(todo);
+      }
+    });
+    console.log('forEach()', doneByForEach);
+
+    // 元の配列は変わらない（5件のまま）
+    console.log(todos.length); // 5
+
+
+    // ===== 2. find()：条件に合う最初の1つを探す =====
+    // 見つかったら、その要素（配列ではなく、オブジェクト1つ）を返す
+    const foundByFind = todos.find((todo) => todo.id === 2);
+    console.log('find()', foundByFind);
+
+    // forEach() で書くと
+    let foundByForEach;
+    todos.forEach((todo) => {
+      if (todo.id === 2) {
+        foundByForEach = todo;
+      }
+    });
+    console.log('forEach()', foundByForEach);
+
+    // 見つからないときは undefined になる
+    const notFound = todos.find((todo) => todo.id === 99);
+    console.log(notFound); // undefined
+
+
+    // ===== 3. map()：1つずつ変えた配列を作る =====
+    // コールバック関数が返した値を集めて、新しい配列を作る（要素の数は同じ）
+    const titlesByMap = todos.map((todo) => todo.title);
+    console.log('map()', titlesByMap);
+
+    // forEach() で書くと
+    const titlesByForEach = [];
+    todos.forEach((todo) => {
+      titlesByForEach.push(todo.title);
+    });
+    console.log('forEach()', titlesByForEach);
+
+    // 文字列を作って返すこともできる
+    const labels = todos.map((todo) => `${todo.title}（${todo.due_date.replaceAll('-', '/')}）`);
+    console.log(labels);
+
+    const numbers =[1,2,3];
+    console.log(numbers.map(n=> n * 2));
+
+
+    // ===== 4. 試してみよう =====
+    // 次の処理を、filter()・find()・map() で書くとどうなるか、上の例を見ながら予想してから動かしてみよう
+    // ・未完了のタスクだけを集める
+    const notDoneTodos = todos.filter((todo) => !todo.is_done);
+
+    console.log(notDoneTodos);
+
+    // ・タイトルが「B社アプリMTG」のタスクを探す
+    const foundTodo = todos.find((todo)=>todo.title === 'B社アプリMTG');
+  
+    console.log(foundTodo);
+
+    // ・id だけの配列を作る
+    const ids = todos.map((todo)=> todo.id);
+
+    console.log(ids);
+  </script>
+</body>
+
+</html>

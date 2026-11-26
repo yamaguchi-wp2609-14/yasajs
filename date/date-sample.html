@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日付の扱い（Date）サンプル</title>
+</head>
+
+<body>
+  <h1>日付の扱い（Date）サンプル</h1>
+  <p>開発者ツールのコンソールを開いて、出力を確かめましょう。</p>
+
+  <script>
+    // ===== 1. 今の日時と曜日 =====
+    // new Date() で、今の日時を持ったオブジェクトができる
+    const now = new Date(); //コンストラクタ
+    console.log(now);
+
+    // getDay() は曜日を「数字」で返す。0が日曜日、6が土曜日
+    console.log(now.getDay());
+
+    // 曜日の名前にするには、配列の添字として使う
+    const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+    console.log(`${weekdays[now.getDay()]}曜日`);
+
+
+    // ===== 2. 日付の文字列から Date を作る =====
+    // input type="date" の value は「2026-11-27」のような文字列になる
+    // 「T00:00:00」を付けて、日本時間の0時として作る
+    const dueDate = new Date('2026-11-27T00:00:00');
+    console.log(dueDate);
+
+    // 付けないと、世界標準時（日本より9時間遅い）の0時として扱われる。日本時間では9時になる
+    console.log(new Date('2026-11-27'));
+
+
+    // ===== 3. 日付を比べる =====
+    // 今日の0時にそろえてから比べる（時刻が残っていると、同じ日でも「過ぎている」ことになる）
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    console.log(today);
+    // Date は < や > で比べられる。前の日付ほど小さい
+    if (dueDate < today) {
+      console.log('期限切れです');
+    } else {
+      console.log('期限内です');
+    }
+
+
+    // ===== 4. 日付の文字列の形を変える =====
+    // 表示の形を変えるだけなら、Date を使わず、文字列のまま置き換えればよい
+    const dateText = '2026-11-27';
+    console.log(dateText.replaceAll('-', '/')); // 2026/11/27
+
+//５．日付のデータを取得する
+console.log(today.getFullYear());
+console.log(today.getMonth())+1; //月のインデックス
+console.log(today.getDate());
+console.log(`${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日(${weekdays[now.getDay()]}曜日)`)
+
+  </script>
+</body>
+
+</html>
